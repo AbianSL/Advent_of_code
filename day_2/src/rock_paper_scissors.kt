@@ -6,7 +6,7 @@ fun ReadFile(): List<String> {
 
   File("data/advent.txt").useLines { 
     lines -> lines.forEach {
-      amount_cal.add(sum)
+      amount_cal.add(it)
     }
   }
 
