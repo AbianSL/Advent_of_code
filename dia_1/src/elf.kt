@@ -5,7 +5,7 @@ fun ReadFile(): List<Int> {
   var amount_cal: MutableList<Int> = mutableListOf()
   var sum: Int = 0
 
-  File("data/input.txt").useLines { 
+  File("data/advent.txt").useLines { 
     lines -> lines.forEach {
       if ( it == "" ) {
         amount_cal.add(sum)
@@ -34,8 +34,29 @@ fun WhichIsBigger(ListToSearch: List<Int>): Int {
   return bigger
 }
 
+fun TopThree(ListToSearch: List<Int>): Int {
+  var third: Int = 0
+  var second: Int = 0
+  var first: Int = 0
+
+  for (i in ListToSearch) {
+    if (i > first) {
+      third = second
+      second = first
+      first = i
+    } else if (i > second) {
+      third = second
+      second = i
+    } else if (i > third) {
+      third = i
+    }
+  }
+
+  return first + second + third
+}
+
 
 fun main() {
   val calories: List<Int> = ReadFile()
-  println(WhichIsBigger(calories))
+  println(TopThree(calories))
 }
