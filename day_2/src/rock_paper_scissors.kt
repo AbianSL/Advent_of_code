@@ -16,12 +16,36 @@ fun ReadFile(): List<String> {
 fun sum_puntuation(first: String, second: String): Int {
   var sum: Int = 0
   sum += when (second) {
-    "X" -> 1
-    "Y" -> 2
-    "Z" -> 3
+    "X" -> 1 // rock
+    "Y" -> 2 // paper
+    "Z" -> 3 // scissors
     else -> -1
   }
-  
+
+  sum += when (first) {
+    "A" -> when (second) { // rock
+      "X" -> 3  // rock
+      "Y" -> 6  // paper
+      "Z" -> 0  // scissors
+      else -> -1
+    }
+    
+    "B" -> when (second) { // paper
+      "X" -> 0 // rock
+      "Y" -> 3 // paper
+      "Z" -> 6 // scissors
+      else -> -1
+    }
+    
+    "C" -> when (second) { // scissors
+      "X" -> 6 // rock
+      "Y" -> 0 // paper
+      "Z" -> 3 // scissors
+      else -> -1
+    }
+    else -> -1
+  }
+
   return sum
 }
 
