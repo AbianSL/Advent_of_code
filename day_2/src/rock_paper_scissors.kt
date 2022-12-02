@@ -50,7 +50,24 @@ fun sum_puntuation(first: String, second: String): Int {
 }
 
 fun if_won_loos(first: String, second: String): Int {
-  
+  return when (second_value) {
+    "X" -> when (first_value) {
+      "A" -> sum_puntuation(first_value, "")
+      "B" -> 
+      "C" ->   
+      else -> 
+    }
+
+    "Y" -> when (first_value) {
+
+    }
+
+    "Z" -> when (first_second) {
+
+    }
+
+    else -> -1
+  }
 }
 
 fun main() {
@@ -70,23 +87,7 @@ fun main() {
         second_value += it[i]
       }
     }
-    sum_of_puntuation += when (second_value) {
-      "X" -> when (first_value) {
-        "A" -> sum_puntuation(first_value, "")
-        "B" ->
-        "C" ->   
-      }
-
-      "Y" -> when (first_value) {
-
-      }
-
-      "Z" -> when (first_second) {
-
-      }
-
-      else -> -1
-    }
+    sum_of_puntuation += 
       
   }
   println(sum_of_puntuation)
