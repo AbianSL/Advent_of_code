@@ -1,18 +1,24 @@
-import java.nio.file.Files
-import java.nio.file.Paths
+import java.io.File
+import java.io.BufferedReader
 
 fun ReadFile(): List<Int> {
-  var amount_cal: List<Int> = mutableListOf()
-  val path = Paths.get("home/tara/Escritorio/Personal/Advent_of_code/dia_1/data/input.txt")
-  var sum:Int = 0
-  // Files.readAlllines(path, Charsets.UTF_8).foreach {
-  //   if (it == "") {
-  //     amount_cal.add(sum)
-  //     sum = 0
-  //   } else {
-  //     sum += it
-  //   }
-  // } 
+  var amount_cal: MutableList<Int> = mutableListOf()
+  var sum: Int = 0
+
+  File("data/input.txt").useLines { 
+    lines -> lines.forEach {
+      if ( it == "" ) {
+        amount_cal.add(sum)
+        sum = 0
+      } else {
+        sum += it.toInt()
+      }
+    }
+  }
+  if (sum != 0) {
+    amount_cal.add(sum)
+  }
+
   return amount_cal
 }
 
