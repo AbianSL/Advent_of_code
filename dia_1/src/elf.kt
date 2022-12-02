@@ -22,7 +22,20 @@ fun ReadFile(): List<Int> {
   return amount_cal
 }
 
+fun WhichIsBigger(ListToSearch: List<Int>): Int {
+  var bigger = 0
+
+  for (i in ListToSearch) {
+    if (i > bigger) {
+      bigger = i
+    }
+  }
+  
+  return bigger
+}
+
+
 fun main() {
   val calories: List<Int> = ReadFile()
-  println(calories)
+  println(WhichIsBigger(calories))
 }
