@@ -4,7 +4,7 @@ import java.io.BufferedReader
 fun ReadFile(): List<String> {
   var amount_cal: MutableList<String> = mutableListOf()
 
-  File("data/example.txt").useLines { 
+  File("data/advent.txt").useLines { 
     lines -> lines.forEach {
       amount_cal.add(it)
     }
@@ -93,7 +93,7 @@ fun main() {
         second_value += it[i]
       }
     }
-    sum_of_puntuation += 
+    sum_of_puntuation += if_won_loos(first_value, second_value)
       
   }
   println(sum_of_puntuation)
