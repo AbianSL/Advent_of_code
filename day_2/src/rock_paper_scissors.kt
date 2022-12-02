@@ -49,8 +49,13 @@ fun sum_puntuation(first: String, second: String): Int {
   return sum
 }
 
+fun if_won_loos(first: String, second: String): Int {
+  
+}
+
 fun main() {
   val calories: List<String> = ReadFile()
+  var sum_of_puntuation: Int = 0
 
   calories.forEach {
     var first_value: String = "" 
@@ -65,6 +70,24 @@ fun main() {
         second_value += it[i]
       }
     }
-    println(sum_puntuation(first_value, second_value))
+    sum_of_puntuation += when (second_value) {
+      "X" -> when (first_value) {
+        "A" -> sum_puntuation(first_value, "")
+        "B" ->
+        "C" ->   
+      }
+
+      "Y" -> when (first_value) {
+
+      }
+
+      "Z" -> when (first_second) {
+
+      }
+
+      else -> -1
+    }
+      
   }
+  println(sum_of_puntuation)
 }
