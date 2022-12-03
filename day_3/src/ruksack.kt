@@ -2,7 +2,7 @@ import java.io.File
 import java.io.BufferedReader
 
 fun ReadFile(): List<String> {
-  val items: List<String> = File("data/example.txt").readLines()
+  val items: List<String> = File("data/advent.txt").readLines()
   return items
 }
 
@@ -14,16 +14,16 @@ fun SearchForEqual(first_group: String, second_group: String): Char {
       }
     }
   }
-  return 'a'
+  return '.'
 }
 
 fun CharValue(symbol: Char): Int {
-  if (symbol > 'a' && symbol < 'z') {
+  if (symbol >= 'a' && symbol <= 'z') {
     return (symbol.toInt() - 96)
-  } else if (symbol > 'A' && symbol < 'Z') {
+  } else if (symbol >= 'A' && symbol <= 'Z') {
     return (symbol.toInt() - 38)
   } else {
-    return -10000
+    return -100000
   }
 }
 
