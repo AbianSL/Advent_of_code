@@ -17,6 +17,19 @@ fun SearchForEqual(first_group: String, second_group: String): Char {
   return '.'
 }
 
+fun SearchForEqual(first_group: String, second_group: String, third_group: String): Char {
+  for (i in first_group) {
+    for (j in second_group) {
+      for (k in third_group) {
+        if (i == j && i == k) {
+          return i
+        }  
+      }
+    }
+  }
+  return '.'
+}
+
 fun CharValue(symbol: Char): Int {
   if (symbol >= 'a' && symbol <= 'z') {
     return (symbol.toInt() - 96)
@@ -49,5 +62,9 @@ fun main() {
       amount_group = mutableListOf()
     }
   }
-  println(all_groups)
+
+  var char_list: MutableList<Char> = mutableListOf()
+  for (i in all_groups) {
+
+  }
 }
