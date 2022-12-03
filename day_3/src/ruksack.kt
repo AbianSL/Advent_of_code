@@ -2,7 +2,7 @@ import java.io.File
 import java.io.BufferedReader
 
 fun ReadFile(): List<String> {
-  val items: List<String> = File("data/advent.txt").readLines()
+  val items: List<String> = File("data/example.txt").readLines()
   return items
 }
 
@@ -37,24 +37,17 @@ fun SumValue(char_list: MutableList<Char>): Int {
 
 fun main() {
   val items: List<String> = ReadFile()
-  var first_group: MutableList<String> = mutableListOf()
-  var second_group: MutableList<String> = mutableListOf()
   
-  for (i in items ) {
-    var word: String = ""
-    for (j in 0..i.length - 1) {
-      word += i[j]
-      if (j == ((i.length - 1) / 2)) {
-        first_group.add(word)
-        word = ""
-      }
+  var amount_group: MutableList<String> = mutableListOf()
+  var all_groups: MutableList<MutableList<String>> = mutableListOf()
+  var counter: Int = 0
+  for (i in items) {
+    ++counter
+    amount_group.add(i)
+    if ((counter % 3) == 0 ) {
+      all_groups.add(amount_group)
+      amount_group = mutableListOf()
     }
-    second_group.add(word)
   }
-  
-  var char_list: MutableList<Char> = mutableListOf()
-  for (i in 0..first_group.size - 1) {
-    char_list.add(SearchForEqual(first_group[i], second_group[i]))
-  }
-  println(SumValue(char_list))
+  println(all_groups)
 }
