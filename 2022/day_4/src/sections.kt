@@ -42,41 +42,6 @@ fun SeparateInPairs(line: String): Pair<Pair<Int, Int>, Pair<Int, Int>> {
   return Pair(first_pair, second_pair)
 }
 
-fun ItCountainOthers(pair_other: Pair<Int,Int>, list_pairs: MutableList<Pair<Pair<Int, Int>, Pair<Int, Int>>>): Boolean {
-  for (i in list_pairs) {
-    for (j in i.toList()) {
-      if ((j.second <= pair_other.second) && (j.first >= pair_other.first)) {
-        return true
-      }
-    }
-  }
-  return false
-}
-
-fun CalculateMinorAndHigher(pairs: Pair<Pair<Int, Int>, Pair<Int, Int>>): Pair<Int, Int> {
-  var minor: Int = 0
-  var higher: Int = 0
-  for (i in pairs.toList()) {
-    if (minor > i.first) {
-      minor = i.first
-    } 
-    if (higher < i.second) {
-      higher = i.second
-    }
-  }
-  return Pair(minor, higher)
-}
-
-fun PairContainOthers(pair_other: Pair<Pair<Int, Int>, Pair<Int, Int>>, list_pairs: MutableList<Pair<Pair<Int, Int>, Pair<Int, Int>>>): Boolean {
-  var range: Pair<Int, Int> = CalculateMinorAndHigher(pair_other)
-  for (i in list_pairs) {
-    if ((range.first <= CalculateMinorAndHigher(i).first) && (range.second >= CalculateMinorAndHigher(i).second)) {
-      return true
-    } 
-  }
-  return false
-}
-
 fun ItCountainOther(first_pair: Pair<Int,Int>, other_pair: Pair<Int, Int>): Boolean {
   if ((first_pair.second <= other_pair.second) && (first_pair.first >= other_pair.first)) {
     return true
