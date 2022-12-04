@@ -86,11 +86,21 @@ fun ItCountainOther(first_pair: Pair<Int,Int>, other_pair: Pair<Int, Int>): Bool
   return false
 }
 
+fun ItOverlap(first_pair: Pair<Int,Int>, other_pair: Pair<Int, Int>): Boolean {
+  for (i in first_pair.first..first_pair.second) {
+    for (j in other_pair.first..other_pair.second) {
+      if (i == j) {
+        return true
+      }
+    }
+  }
+  return false
+}
+
 fun HowManyContainsOthers(list_pairs: MutableList<Pair<Pair<Int, Int>, Pair<Int, Int>>>): Int {
   var counter: Int = 0
   for (i in list_pairs) {
-    println(i)
-    if (ItCountainOther(i.first, i.second)) {
+    if (ItOverlap(i.first, i.second)) {
       ++counter
     }
   }
