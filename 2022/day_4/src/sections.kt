@@ -46,11 +46,18 @@ fun ItCountainOthers(pair_other: Pair<Int,Int>, list_pairs: MutableList<Pair<Pai
   return false
 }
 
+fun ItCountainOther(first_pair: Pair<Int,Int>, other_pair: Pair<Int, Int>): Boolean {
+  if ((other_pair.second <= first_pair.second) && (other_pair.first >= first_pair.first)) {
+    return true
+  }
+  return false
+}
+
 fun HowManyContainsOthers(list_pairs: MutableList<Pair<Pair<Int, Int>, Pair<Int, Int>>>): Int {
   var counter: Int = 0
   for (i in list_pairs) {
     for (j in i.toList()) {
-      if (ItCountainOthers(j, list_pairs)) {
+      if (ItCountainOther(j, list_pairs)) {
         ++counter
       }
     }
