@@ -2,7 +2,7 @@ import java.io.File
 import java.io.BufferedReader
 
 fun ReadFile(): List<String> {
-  val items: List<String> = File("data/advent.txt").readLines()
+  val items: List<String> = File("data/example.txt").readLines()
   return items
 }
 
@@ -16,10 +16,10 @@ fun SeparateInPairs(line: String): Pair<Pair<Int, Int>, Pair<Int, Int>> {
   for (i in line) {
     if (i >= '0' && i <= '9') {
       if (first_second) {
-        first_value = i.toInt()
+        first_value = i.toInt() - 48
         first_second = false
       } else {
-        second_value = i.toInt()
+        second_value = i.toInt() - 48 // to ASCII to normal numbers
         first_second = true
       }
     } else if (i == ',' || i == line[line.length - 1]) {
@@ -64,5 +64,5 @@ fun main() {
     val Each_pair: Pair<Pair<Int, Int>, Pair<Int, Int>> = SeparateInPairs(i)
     list_pairs.add(Each_pair)
   }
-
+  println(HowManyContainsOthers(list_pairs))
 }
