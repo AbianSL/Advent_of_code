@@ -34,7 +34,16 @@ fun SeparateInPairs(line: String): Pair<Pair<Int, Int>, Pair<Int, Int>> {
   return Pair(first_pair, second_pair)
 }
 
-fun main() {
-  val items: List<String> = ReadFile()
+fun ItCountainOthers(pair_other: Pair<Int,Int>): Boolean {
   
+}
+
+fun main() {
+  val All_lines: List<String> = ReadFile()
+  var list_pairs: MutableList<Pair<Pair<Int, Int>, Pair<Int, Int>>> = mutableListOf()
+  for (i in All_lines) {
+    val Each_pair: Pair<Pair<Int, Int>, Pair<Int, Int>> = SeparateInPairs(i)
+    list_pairs.add(Each_pair)
+  }
+
 }
