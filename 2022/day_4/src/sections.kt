@@ -2,7 +2,7 @@ import java.io.File
 import java.io.BufferedReader
 
 fun ReadFile(): List<String> {
-  val items: List<String> = File("data/advent.txt").readLines()
+  val items: List<String> = File("data/example.txt").readLines()
   return items
 }
 
@@ -63,7 +63,7 @@ fun ItCountainOther(first_pair: Pair<Int,Int>, other_pair: Pair<Int, Int>): Bool
 fun CalculateMinorAndHigher(pairs: Pair<Pair<Int, Int>, Pair<Int, Int>>): Pair<Int, Int> {
   var minor: Int = 0
   var higher: Int = 0
-  for (i in pairs) {
+  for (i in pairs.toList()) {
     if (minor > i.first) {
       minor = i.first
     } 
@@ -75,16 +75,20 @@ fun CalculateMinorAndHigher(pairs: Pair<Pair<Int, Int>, Pair<Int, Int>>): Pair<I
 }
 
 fun PairContainOthers(pair_other: Pair<Pair<Int, Int>, Pair<Int, Int>>, list_pairs: MutableList<Pair<Pair<Int, Int>, Pair<Int, Int>>>): Boolean {
-  var range: Pair(Int, Int) =
+  var range: Pair<Int, Int> = CalculateMinorAndHigher(pair_other)
+  for (i in list_pairs) {
+    if ((range.first <= CalculateMinorAndHigher(i).first) && (range.second >= CalculateMinorAndHigher(i).second)) {
+      return true
+    } 
+  }
+  return false
 }
 
 fun HowManyContainsOthers(list_pairs: MutableList<Pair<Pair<Int, Int>, Pair<Int, Int>>>): Int {
   var counter: Int = 0
   for (i in list_pairs) {
-    for (j in i.toList()) {
-      if (ItCountainOther(i.first, i.second)) {
-        ++counter
-      }
+    if (PairContainOthers(i, list_pairs)) {
+      ++counter
     }
   }
   return counter
