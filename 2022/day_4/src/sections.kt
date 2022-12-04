@@ -34,8 +34,15 @@ fun SeparateInPairs(line: String): Pair<Pair<Int, Int>, Pair<Int, Int>> {
   return Pair(first_pair, second_pair)
 }
 
-fun ItCountainOthers(pair_other: Pair<Int,Int>): Boolean {
-  
+fun ItCountainOthers(pair_other: Pair<Int,Int>, list_pairs: MutableList<Pair<Pair<Int, Int>, Pair<Int, Int>>>): Boolean {
+  for (i in list_pairs) {
+    for (j in i.toList()) {
+      if ((j.second <= pair_other.second) && (j.first >= pair_other.first)) {
+        return true
+      }
+    }
+  }
+  return false
 }
 
 fun main() {
