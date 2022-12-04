@@ -45,6 +45,18 @@ fun ItCountainOthers(pair_other: Pair<Int,Int>, list_pairs: MutableList<Pair<Pai
   return false
 }
 
+fun HowManyContainsOthers(list_pairs: MutableList<Pair<Pair<Int, Int>, Pair<Int, Int>>>): Int {
+  var counter: Int = 0
+  for (i in list_pairs) {
+    for (j in i.toList()) {
+      if (ItCountainOthers(j, list_pairs)) {
+        ++counter
+      }
+    }
+  }
+  return counter
+}
+
 fun main() {
   val All_lines: List<String> = ReadFile()
   var list_pairs: MutableList<Pair<Pair<Int, Int>, Pair<Int, Int>>> = mutableListOf()
