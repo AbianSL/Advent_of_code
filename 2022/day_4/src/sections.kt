@@ -2,7 +2,7 @@ import java.io.File
 import java.io.BufferedReader
 
 fun ReadFile(): List<String> {
-  val items: List<String> = File("data/example.txt").readLines()
+  val items: List<String> = File("data/advent.txt").readLines()
   return items
 }
 
@@ -58,6 +58,24 @@ fun ItCountainOther(first_pair: Pair<Int,Int>, other_pair: Pair<Int, Int>): Bool
     return true
   }
   return false
+}
+
+fun CalculateMinorAndHigher(pairs: Pair<Pair<Int, Int>, Pair<Int, Int>>): Pair<Int, Int> {
+  var minor: Int = 0
+  var higher: Int = 0
+  for (i in pairs) {
+    if (minor > i.first) {
+      minor = i.first
+    } 
+    if (higher < i.second) {
+      higher = i.second
+    }
+  }
+  return Pair(minor, higher)
+}
+
+fun PairContainOthers(pair_other: Pair<Pair<Int, Int>, Pair<Int, Int>>, list_pairs: MutableList<Pair<Pair<Int, Int>, Pair<Int, Int>>>): Boolean {
+  var range: Pair(Int, Int) =
 }
 
 fun HowManyContainsOthers(list_pairs: MutableList<Pair<Pair<Int, Int>, Pair<Int, Int>>>): Int {
