@@ -79,6 +79,5 @@ fun main() {
     val Each_pair: Pair<Pair<Int, Int>, Pair<Int, Int>> = SeparateInPairs(i)
     list_pairs.add(Each_pair)
   }
-  println(list_pairs)
   println(HowManyContainsOthers(list_pairs))
 }
