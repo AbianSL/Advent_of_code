@@ -22,7 +22,8 @@ fun SeparateInPairs(line: String): Pair<Pair<Int, Int>, Pair<Int, Int>> {
         second_value = i.toInt() - 48 // to ASCII to normal numbers
         first_second = true
       }
-    } else if (i == ',' || i == line[line.length - 1]) {
+    } 
+    if (i == ',' || i == line[line.length - 1]) {
       if (first_second_pair) {
         first_pair = Pair(first_value, second_value)
         first_second_pair = false
