@@ -2,14 +2,14 @@ import java.io.File
 import java.io.BufferedReader
 
 fun ReadFile(): List<String> {
-  val items: List<String> = File("data/example.txt").readLines()
+  val items: List<String> = File("data/advent.txt").readLines()
   return items
 }
 
 fun SeparateInPairs(line: String): Pair<Pair<Int, Int>, Pair<Int, Int>> {
   var first_value: Int = -1000
   var second_value: Int = -1000
-  var value: String = 0
+  var value: String = ""
   var first_second: Boolean = true 
   var first_pair = Pair(-100, -100) // to know if it doens't do
   var second_pair = Pair(-100, -100) // to know if it doens't do
@@ -27,6 +27,7 @@ fun SeparateInPairs(line: String): Pair<Pair<Int, Int>, Pair<Int, Int>> {
         second_value = value.toInt() - 48
         first_second = true
       }
+      value = ""
     }
 
     if (i == ',' || i == line[line.length - 1]) {
