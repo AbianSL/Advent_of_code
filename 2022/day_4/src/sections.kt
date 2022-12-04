@@ -57,7 +57,7 @@ fun HowManyContainsOthers(list_pairs: MutableList<Pair<Pair<Int, Int>, Pair<Int,
   var counter: Int = 0
   for (i in list_pairs) {
     for (j in i.toList()) {
-      if (ItCountainOther(j, list_pairs)) {
+      if (ItCountainOther(i.first, i.second)) {
         ++counter
       }
     }
