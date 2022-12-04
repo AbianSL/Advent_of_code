@@ -78,9 +78,11 @@ fun PairContainOthers(pair_other: Pair<Pair<Int, Int>, Pair<Int, Int>>, list_pai
 }
 
 fun ItCountainOther(first_pair: Pair<Int,Int>, other_pair: Pair<Int, Int>): Boolean {
-  if ((first_pair.second < other_pair.second) && (first_pair.first > other_pair.first)) {
+  if ((first_pair.second <= other_pair.second) && (first_pair.first >= other_pair.first)) {
     return true
-  } 
+  } else if ((other_pair.second <= first_pair.second) && (other_pair.first >= first_pair.first)) {
+    return true
+  }
   return false
 }
 
