@@ -9,20 +9,26 @@ fun ReadFile(): List<String> {
 fun SeparateInPairs(line: String): Pair<Pair<Int, Int>, Pair<Int, Int>> {
   var first_value: Int = -1000
   var second_value: Int = -1000
+  var value: String = 0
   var first_second: Boolean = true 
   var first_pair = Pair(-100, -100) // to know if it doens't do
   var second_pair = Pair(-100, -100) // to know if it doens't do
   var first_second_pair: Boolean = true
   for (i in line) {
     if (i >= '0' && i <= '9') {
+      value += i
+    } 
+
+    if (i == '-') {
       if (first_second) {
-        first_value = i.toInt() - 48
+        first_value = value.toInt() - 48
         first_second = false
       } else {
-        second_value = i.toInt() - 48 // to ASCII to normal numbers
+        second_value = value.toInt() - 48
         first_second = true
       }
-    } 
+    }
+
     if (i == ',' || i == line[line.length - 1]) {
       if (first_second_pair) {
         first_pair = Pair(first_value, second_value)
