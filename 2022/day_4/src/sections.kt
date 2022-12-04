@@ -2,7 +2,7 @@ import java.io.File
 import java.io.BufferedReader
 
 fun ReadFile(): List<String> {
-  val items: List<String> = File("data/advent.txt").readLines()
+  val items: List<String> = File("data/example.txt").readLines()
   return items
 }
 
@@ -14,23 +14,23 @@ fun SeparateInPairs(line: String): Pair<Pair<Int, Int>, Pair<Int, Int>> {
   var first_pair = Pair(-100, -100) // to know if it doens't do
   var second_pair = Pair(-100, -100) // to know if it doens't do
   var first_second_pair: Boolean = true
-  for (i in line) {
-    if (i >= '0' && i <= '9') {
-      value += i
+  for (i in 0..line.length - 1) {
+    if (line[i] >= '0' && line[i] <= '9') {
+      value += line[i]
     } 
 
-    if (i == '-') {
+    if (line[i] == '-' || line[i] == ',' || i == (line.length - 1)) {
       if (first_second) {
-        first_value = value.toInt() - 48
+        first_value = value.toInt()
         first_second = false
       } else {
-        second_value = value.toInt() - 48
+        second_value = value.toInt()
         first_second = true
       }
       value = ""
     }
 
-    if (i == ',' || i == line[line.length - 1]) {
+    if (line[i] == ',' || i == (line.length - 1)) {
       if (first_second_pair) {
         first_pair = Pair(first_value, second_value)
         first_second_pair = false
@@ -79,5 +79,6 @@ fun main() {
     val Each_pair: Pair<Pair<Int, Int>, Pair<Int, Int>> = SeparateInPairs(i)
     list_pairs.add(Each_pair)
   }
+  println(list_pairs)
   println(HowManyContainsOthers(list_pairs))
 }
