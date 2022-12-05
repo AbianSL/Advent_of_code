@@ -12,41 +12,32 @@ fun Structure(all_lines: List<String>, amount: Int): List<MutableList<String>> {
   var single_set: MutableList<String> = mutableListOf()
   var letter: String = ""
   var counter: Int = 0
-  var position_should_be: Int = 0
   var position: Int = 0
-  outer@while(true) {
-    for (i in 0..amount) {
-      for (j in all_lines[i]) {
-        if (j == ' ') {
-          if (counter >= 3) {
-            ++position
-            if (position > position_should_be) {
-              break
-            }
-            counter = 0
-          } else {
-            ++counter
-          }
-          continue
-        }
-    
-        if (j >= 'A' && j <= 'Z') {
-          letter += j
-        }
-    
-        if (j == ']') {
-          single_set.add(letter)
-          letter = ""
+  for (i in 0..amount) {
+    for (j in all_lines[i]) {
+      if (j == ' ') {
+        if (counter >= 3) {
+          ++position
           counter = 0
+        } else {
+          ++counter
         }
+        continue
       }
-      if (i >= amount) {
-        all_sets.add(single_set)
-        single_set = mutableListOf()
-        continue@outer
+  
+      if (j >= 'A' && j <= 'Z') {
+        letter += j
+      }
+  
+      if (j == ']') {
+        single_set.add(letter)
+        letter = ""
+        counter = 0
       }
     }
-    break
+    all_sets.add(single_set)
+    println(single_set)
+    single_set = mutableListOf()
   }
   
   return all_sets
