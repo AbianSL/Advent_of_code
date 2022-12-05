@@ -34,14 +34,16 @@ fun Structure(all_lines: List<String>, amount: Int): List<MutableList<String>> {
       }
   
       if (j == ']') {
-        println(position)
-        println(letter)
-        single_set.add(position, letter)
+        single_set.add(letter)
         letter = ""
         counter = 0
       }
     }
-    all_sets.add(single_set)
+    if (i >= amount) {
+      all_sets.add(single_set)
+      single_set = mutableListOf()
+      i = -1
+    }
   }
   return all_sets
 }
