@@ -6,9 +6,10 @@ fun ReadFile(name: String): List<String> {
   return items
 }
 
-fun Structure(all_lines: List<String>): List<MutableList<String>> {
+fun Structure(all_lines: List<String>, amount: Int): List<MutableList<String>> {
   var all_sets: MutableList<MutableList<String>> = mutableListOf()
   var letter: String = ""
+  var counter: Int = 0
   for (i in 0..all_lines.size - 1) {
     for (j in all_lines[i]) {
       if (j == ' ') {
@@ -20,6 +21,7 @@ fun Structure(all_lines: List<String>): List<MutableList<String>> {
       }
   
       if (j == ']') {
+        ++counter
         // all_sets.add(0, letter)
         letter = ""
       }
@@ -36,4 +38,5 @@ fun Usage(args: Array<String>) {
 
 fun main(args: Array<String>) {
   val AllLines: List<String> = ReadFile(args[0])
+  
 }
