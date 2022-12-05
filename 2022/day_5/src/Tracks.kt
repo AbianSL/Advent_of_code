@@ -17,6 +17,7 @@ fun Structure(all_lines: List<String>, amount: Int): List<MutableList<Pair<Int, 
     for (j in all_lines[i]) {
       if (j == ' ') {
         if (counter >= 3) {
+          single_set.add(Pair(position, ""))
           ++position
           counter = 0
         } else {
@@ -43,6 +44,8 @@ fun Structure(all_lines: List<String>, amount: Int): List<MutableList<Pair<Int, 
   
   return all_sets
 }
+
+
 
 fun main(args: Array<String>) {
   val AllLines: List<String> = ReadFile(args[0])
