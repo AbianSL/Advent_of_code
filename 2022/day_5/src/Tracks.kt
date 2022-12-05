@@ -36,9 +36,9 @@ fun Structure(all_lines: List<String>, amount: Int): List<MutableList<String>> {
       }
     }
     all_sets.add(single_set)
-    println(single_set)
     single_set = mutableListOf()
   }
+  println(all_sets)
   
   return all_sets
 }
