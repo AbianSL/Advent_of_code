@@ -45,7 +45,22 @@ fun Structure(all_lines: List<String>, amount: Int): List<MutableList<Pair<Int, 
   return all_sets
 }
 
-
+fun Movement(list: MutableList<MutableList<Pair<Int, String>>>, amount: Int, from: Int, to: Int): List<MutableList<Pair<Int, String>>> {
+  var counter: Int = 0
+  var list_to_move: MutableList<Pair<Int, String>> = mutableListOf()
+  list.forEach {
+    for (i in it) {
+      if (i.first == from) {
+        list_to_move.add(i)
+        ++counter
+        if (counter == amount) {
+          break
+        }
+      }
+    }
+  }
+  return list
+}
 
 fun main(args: Array<String>) {
   val AllLines: List<String> = ReadFile(args[0])
