@@ -6,23 +6,22 @@ fun ReadFile(name: String): List<String> {
   return items
 }
 
+// amount == amount of line to read
 fun Structure(all_lines: List<String>, amount: Int): List<MutableList<String>> {
   var all_sets: MutableList<MutableList<String>> = mutableListOf()
   var single_set: MutableList<String> = mutableListOf()
   var letter: String = ""
   var counter: Int = 0
+  var position_should_be: Int = 0
   var position: Int = 0
-  for (i in 0..all_lines.size - 1) {
-    
-    val number = all_lines[i].toList().filter{ it <= '9' && it >= '0' }
-    if (number.size >= 1) {
-      break
-    }
-
+  for (i in 0..amount) {
     for (j in all_lines[i]) {
       if (j == ' ') {
         if (counter >= 3) {
           ++position
+          if (position > position_should_be) {
+            break
+          }
           counter = 0
         } else {
           ++counter
