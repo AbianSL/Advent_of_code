@@ -49,10 +49,11 @@ fun Movement(list: MutableList<MutableList<Pair<Int, String>>>, amount: Int, fro
   var counter: Int = 0
   var list_to_move: MutableList<Pair<Int, String>> = mutableListOf()
   list.forEach {
-    for (i in it) {
+    for ((position, i) in it.withIndex()) {
       if (i.first == from) {
         list_to_move.add(i)
         ++counter
+        it[position] = Pair(from, "")
         if (counter == amount) {
           break
         }
