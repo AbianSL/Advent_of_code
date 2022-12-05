@@ -1,8 +1,8 @@
 import java.io.File
 import java.io.BufferedReader
 
-fun ReadFile(): List<String> {
-  val items: List<String> = File("data/example.txt").readLines()
+fun ReadFile(name: String): List<String> {
+  val items: List<String> = File(name).readLines()
   return items
 }
 
@@ -20,13 +20,14 @@ fun Structure(all_lines: List<String>): List<MutableList<String>> {
       }
   
       if (j == ']') {
-        all_sets.add(0, letter)
+        // all_sets.add(0, letter)
         letter = ""
       }
     }
   }
+  return all_sets
 }
 
-fun main() {
-  val All_lines: List<String> = ReadFile()
+fun main(args: Array<String>) {
+  val AllLines: List<String> = ReadFile(args[0])
 }
