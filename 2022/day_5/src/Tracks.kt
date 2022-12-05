@@ -10,9 +10,16 @@ fun Structure(all_lines: List<String>, amount: Int): List<MutableList<String>> {
   var all_sets: MutableList<MutableList<String>> = mutableListOf()
   var letter: Char = ''
   var counter: Int = 0
+  var position: Int = 0
   for (i in 0..all_lines.size - 1) {
     for (j in all_lines[i]) {
       if (j == ' ') {
+        if (counter >= 3) {
+          ++position
+          counter = 0
+        } else {
+          ++counter
+        }
         continue
       }
   
@@ -21,7 +28,6 @@ fun Structure(all_lines: List<String>, amount: Int): List<MutableList<String>> {
       }
   
       if (j == ']') {
-        ++counter
         // all_sets.add(0, letter)
         letter = ''
       }
