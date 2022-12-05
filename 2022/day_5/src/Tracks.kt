@@ -14,41 +14,45 @@ fun Structure(all_lines: List<String>, amount: Int): List<MutableList<String>> {
   var counter: Int = 0
   var position_should_be: Int = 0
   var position: Int = 0
-  for (i in 0..amount) {
-    for (j in all_lines[i]) {
-      if (j == ' ') {
-        if (counter >= 3) {
-          ++position
-          if (position > position_should_be) {
-            break
+  outer@while(true) {
+    for (i in 0..amount) {
+      for (j in all_lines[i]) {
+        if (j == ' ') {
+          if (counter >= 3) {
+            ++position
+            if (position > position_should_be) {
+              break
+            }
+            counter = 0
+          } else {
+            ++counter
           }
-          counter = 0
-        } else {
-          ++counter
+          continue
         }
-        continue
+    
+        if (j >= 'A' && j <= 'Z') {
+          letter += j
+        }
+    
+        if (j == ']') {
+          single_set.add(letter)
+          letter = ""
+          counter = 0
+        }
       }
-  
-      if (j >= 'A' && j <= 'Z') {
-        letter += j
-      }
-  
-      if (j == ']') {
-        single_set.add(letter)
-        letter = ""
-        counter = 0
+      if (i >= amount) {
+        all_sets.add(single_set)
+        single_set = mutableListOf()
+        continue@outer
       }
     }
-    if (i >= amount) {
-      all_sets.add(single_set)
-      single_set = mutableListOf()
-      i = -1
-    }
+    break
   }
+  
   return all_sets
 }
 
 fun main(args: Array<String>) {
   val AllLines: List<String> = ReadFile(args[0])
-  val All_tracks: List<MutableList<String>> = Structure(AllLines, args[1])
+  val All_tracks: List<MutableList<String>> = Structure(AllLines, args[1].toInt())
 }
