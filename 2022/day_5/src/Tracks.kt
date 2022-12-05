@@ -30,12 +30,6 @@ fun Structure(all_lines: List<String>, amount: Int): List<MutableList<String>> {
   return all_sets
 }
 
-fun Usage(args: Array<String>) {
-  if (args.size != 2) {
-    println("there is not enough parameter")
-  }
-}
-
 fun main(args: Array<String>) {
   val AllLines: List<String> = ReadFile(args[0])
   
