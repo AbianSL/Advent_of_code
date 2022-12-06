@@ -15,9 +15,25 @@ fun AllDifferent(characters: String): Boolean {
   return true
 }
 
+fun HowManyTakeFour(line: List<String>): Int {
+  var characters: String = ""
+  for (i in 0..line.size) {
+    var amount: Int = 0
+    for (j in 0..4) {
+      characters += line[i + j]
+      amount = i + j
+    }
+    if (AllDifferent(characters)) {
+      return amount
+    }
+    characters = ""
+  }
+  return amount
+}
+
 fun main(args: Array<String>) {
   val AllLines: List<String> = ReadFile(args[0])
-  
+
 }
 
 fun ReadFile(name: String): List<String> {
