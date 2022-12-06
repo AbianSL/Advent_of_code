@@ -63,8 +63,8 @@ fun Movement(list: MutableList<MutableList<Pair<Int, String>>>, amount: Int, fro
 
   counter = 0
   for (i in list.size - 1 ..0) {
-    if (list[i[to - 1]] == "") {
-      list[i[to - 1]] == list_to_move[counter]
+    if (list[i][to - 1].second == "") {
+      list[i][to - 1] == list_to_move[counter]
       ++counter
     }
   }
@@ -74,17 +74,43 @@ fun Movement(list: MutableList<MutableList<Pair<Int, String>>>, amount: Int, fro
       if (counter >= list_to_move.size - 1) {
         break
       }
+      var list_to_change: MutableList<Pair<Int, String>> = mutableListOf()
       when (to) {
-        0 -> list.add(0, mutableListOf(Pair(0, list_to_move[counter]), Pair(1, ""), Pair(2, "")))
-        1 -> list.add(0, mutableListOf(Pair(0, ""), Pair(1, list_to_move[counter]), Pair(2, "")))
-        2 -> list.add(0, mutableListOf(Pair(0, ""), Pair(1, ""), Pair(2, list_to_move[counter])))
+        0 ->  list_to_change = mutableListOf(Pair(0, list_to_move[counter].second), Pair(1, ""), Pair(2, ""))
+        1 -> list_to_change =  mutableListOf(Pair(0, ""), Pair(1, list_to_move[counter].second), Pair(2, ""))
+        2 -> list_to_change =  mutableListOf(Pair(0, ""), Pair(1, ""), Pair(2, list_to_move[counter].second))
         else -> println("There are a error with (" + to + ")")
       }
+      list.add(0, list_to_change)
       ++counter
     }
   }
 
   return list
+}
+
+fun ReadMovement(AllLines: List<String>, All_tracks: List<MutableList<Pair<Int, String>>>, start: Int) : List<MutableList<Pair<Int, String>>> {
+  var switcher: Int = 0
+  for (i in AllLines[start]..AllLines[AllLines.size - 1]) {
+    var amount: Int = -100
+    var from: Int = -100
+    var to: Int = -100
+    for (j in AllLines[i]) {
+      if (j <= '9' && j >= '0') {
+        when (switcher) {
+          0 -> amount = j
+          1 -> from = j
+          2 -> to = j
+          4 -> {
+            Movement(All_tracks, amount, from, to)
+            switcher = -1
+          }
+          else -> println("There are an error with switcher: (" + switcher + ")")
+        }
+        ++switcher
+      }
+    }
+  }
 }
 
 fun main(args: Array<String>) {
