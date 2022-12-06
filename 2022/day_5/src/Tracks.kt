@@ -111,7 +111,7 @@ fun ReadMovement(AllLines: List<String>, All_tracks: MutableList<MutableList<Pai
           0 -> {
             if (AllLines[i][counter + 1] <= '9' && 
                 AllLines[i][counter + 1] >= '0') {
-              -1
+              switcher = -1
             }
             string_p += j
           }
@@ -165,8 +165,6 @@ fun main(args: Array<String>) {
   val AllLines: List<String> = ReadFile(args[0])
   val All_tracks: MutableList<MutableList<Pair<Int, String>>> = Structure(AllLines, args[1].toInt())
   val definitive: List<MutableList<Pair<Int, String>>> = ReadMovement(AllLines, All_tracks, args[1].toInt() + 2)
-  println()
-  println(definitive)
   println()
   println(Searcher(definitive))
   
