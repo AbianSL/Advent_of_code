@@ -52,6 +52,8 @@ fun Movement(list: MutableList<MutableList<Pair<Int, String>>>, amount: Int, fro
       if ((i.first == from && i.second != "") &&
           (counter < amount)) {
         list_to_move.add(i)
+        // modification
+        // list_to_move.add(0, i)
         ++counter
         it[position] = Pair(from, "")
         if (counter >= amount) {
