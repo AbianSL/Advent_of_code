@@ -49,16 +49,18 @@ fun Movement(list: MutableList<MutableList<Pair<Int, String>>>, amount: Int, fro
   var list_to_move: MutableList<Pair<Int, String>> = mutableListOf()
   list.forEach {
     for ((position, i) in it.withIndex()) {
-      if (i.first == from) {
+      if ((i.first == from && i.second != "") &&
+          (counter < amount)) {
         list_to_move.add(i)
         ++counter
         it[position] = Pair(from, "")
-        if (counter == amount) {
+        if (counter >= amount) {
           break
         }
       }
     }
   }
+
 
   counter = 0
   for (i in list.size - 1 ..0) {
@@ -78,7 +80,7 @@ fun Movement(list: MutableList<MutableList<Pair<Int, String>>>, amount: Int, fro
         0 ->  list_to_change = mutableListOf(Pair(0, list_to_move[counter].second), Pair(1, ""), Pair(2, ""))
         1 -> list_to_change =  mutableListOf(Pair(0, ""), Pair(1, list_to_move[counter].second), Pair(2, ""))
         2 -> list_to_change =  mutableListOf(Pair(0, ""), Pair(1, ""), Pair(2, list_to_move[counter].second))
-        else -> println("There are a error with (" + to + ")")
+        else -> println("There are a error with the direction (" + to + ")")
       }
       list.add(0, list_to_change)
       ++counter
@@ -96,16 +98,25 @@ fun ReadMovement(AllLines: List<String>, All_tracks: MutableList<MutableList<Pai
     var to: Int = -100
     for (j in AllLines[i]) {
       if (j <= '9' && j >= '0') {
+
         when (switcher) {
           0 -> amount = j.toInt() - 48
-          1 -> from = j.toInt() - 48
-          2 -> to = j.toInt() - 48
-          3 -> {
+          1 -> from = j.toInt() - 48 - 1 // I count since 0
+          2 -> {
+            to = j.toInt() - 48 - 1 // I count since 0
             Movement(All_tracks, amount, from, to)
             switcher = -1
           }
           else -> println("There are an error with switcher: (" + switcher + ")")
         }
+    println(amount)
+    println(from)
+    println(to)
+    println()
+
+  println(list_to_move)
+  println()
+  println(list)
         ++switcher
       }
     }
@@ -116,7 +127,7 @@ fun ReadMovement(AllLines: List<String>, All_tracks: MutableList<MutableList<Pai
 fun main(args: Array<String>) {
   val AllLines: List<String> = ReadFile(args[0])
   val All_tracks: MutableList<MutableList<Pair<Int, String>>> = Structure(AllLines, args[1].toInt())
-  val definitive: List<MutableList<Pair<Int, String>>> = ReadMovement(AllLines, All_tracks, args[1].toInt() + 1)
+  val definitive: List<MutableList<Pair<Int, String>>> = ReadMovement(AllLines, All_tracks, args[1].toInt() + 2)
   println()
   println(definitive)
 }
