@@ -61,21 +61,17 @@ fun Movement(list: MutableList<MutableList<Pair<Int, String>>>, amount: Int, fro
     }
   }
 
-  println(list_to_move)
-  println()
-
   counter = 0
   for (i in (list.size - 1) downTo 0) {
     if (list[i][to].second == "") {
-      list[i][to] = list_to_move[counter]
+      list[i][to] = Pair(list[i][to].first, list_to_move[counter].second)
       ++counter
     }
   }
-  println(list)
 
-  if (counter < list_to_move.size - 1) {
+  if (counter < list_to_move.size) {
     for (i in 0..list_to_move.size - 1) {
-      if (counter >= list_to_move.size - 1) {
+      if (counter >= list_to_move.size) {
         break
       }
       var list_to_change: MutableList<Pair<Int, String>> = mutableListOf()
@@ -89,6 +85,7 @@ fun Movement(list: MutableList<MutableList<Pair<Int, String>>>, amount: Int, fro
       ++counter
     }
   }
+  println(list)
 
   return list
 }
