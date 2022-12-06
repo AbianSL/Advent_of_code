@@ -104,19 +104,23 @@ fun ReadMovement(AllLines: List<String>, All_tracks: MutableList<MutableList<Pai
     var amount: Int = -100
     var from: Int = -100
     var to: Int = -100
+    var string_p: String = ""
     for ((counter, j) in AllLines[i].withIndex()) {
       if (j <= '9' && j >= '0') {
         when (switcher) {
           0 -> {
-            var string_p: String = ""
-            var second_count: Int = counter
-            while (AllLines[i][second_count] <= '9' && AllLines[i][second_count] >= '0') {
-              string_p += j
-              ++second_count
+            if (AllLines[i][counter + 1] <= '9' && 
+                AllLines[i][counter + 1] >= '0') {
+              -1
             }
-            amount = string_p.toInt()
+            string_p += j
           }
-          1 -> from = j.toInt() - 48 - 1 // I count since 0
+          
+          1 ->{
+          amount = string_p.toInt()
+          from = j.toInt() - 48 - 1 // I count since 0
+          }   
+          
           2 -> {
             to = j.toInt() - 48 - 1 // I count since 0            
             Movement(All_tracks, amount, from, to)
