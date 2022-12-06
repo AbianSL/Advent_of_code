@@ -104,11 +104,18 @@ fun ReadMovement(AllLines: List<String>, All_tracks: MutableList<MutableList<Pai
     var amount: Int = -100
     var from: Int = -100
     var to: Int = -100
-    for (j in AllLines[i]) {
+    for ((counter, j) in AllLines[i].withIndex()) {
       if (j <= '9' && j >= '0') {
-
         when (switcher) {
-          0 -> amount = j.toInt() - 48
+          0 -> {
+            var string_p: String = ""
+            var second_count: Int = counter
+            while (AllLines[i][second_count] <= '9' && AllLines[i][second_count] >= '0') {
+              string_p += j
+              ++second_count
+            }
+            amount = string_p.toInt()
+          }
           1 -> from = j.toInt() - 48 - 1 // I count since 0
           2 -> {
             to = j.toInt() - 48 - 1 // I count since 0            
@@ -155,5 +162,8 @@ fun main(args: Array<String>) {
   val All_tracks: MutableList<MutableList<Pair<Int, String>>> = Structure(AllLines, args[1].toInt())
   val definitive: List<MutableList<Pair<Int, String>>> = ReadMovement(AllLines, All_tracks, args[1].toInt() + 2)
   println()
+  println(definitive)
+  println()
   println(Searcher(definitive))
+  
 }
