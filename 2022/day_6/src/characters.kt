@@ -2,8 +2,8 @@ import java.io.File
 import java.io.BufferedReader
 
 fun AllDifferent(characters: String): Boolean {
-  for (i in 0..characters.lenght) {
-    for (j in 0..characters.lenght) {
+  for (i in 0..characters.length) {
+    for (j in 0..characters.length) {
       if (i == j) {
         continue
       }
