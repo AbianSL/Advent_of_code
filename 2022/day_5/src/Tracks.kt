@@ -61,6 +61,9 @@ fun Movement(list: MutableList<MutableList<Pair<Int, String>>>, amount: Int, fro
     }
   }
 
+  println(list_to_move)
+  println()
+  println(list)
 
   counter = 0
   for (i in list.size - 1 ..0) {
@@ -113,10 +116,6 @@ fun ReadMovement(AllLines: List<String>, All_tracks: MutableList<MutableList<Pai
     println(from)
     println(to)
     println()
-
-  println(list_to_move)
-  println()
-  println(list)
         ++switcher
       }
     }
