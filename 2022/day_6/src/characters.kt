@@ -28,12 +28,12 @@ fun HowManyTakeFour(line: List<String>): Int {
     }
     characters = ""
   }
-  return amount
+  return -1000
 }
 
 fun main(args: Array<String>) {
   val AllLines: List<String> = ReadFile(args[0])
-
+  println(HowManyTakeFour(AllLines))
 }
 
 fun ReadFile(name: String): List<String> {
