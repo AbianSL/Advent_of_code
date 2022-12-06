@@ -60,6 +60,30 @@ fun Movement(list: MutableList<MutableList<Pair<Int, String>>>, amount: Int, fro
       }
     }
   }
+
+  counter = 0
+  for (i in list.size - 1 ..0) {
+    if (list[i[to - 1]] == "") {
+      list[i[to - 1]] == list_to_move[counter]
+      ++counter
+    }
+  }
+
+  if (counter < list_to_move.size - 1) {
+    for (i in 0..list_to_move.size - 1) {
+      if (counter >= list_to_move.size - 1) {
+        break
+      }
+      when (to) {
+        0 -> list.add(0, mutableListOf(Pair(0, list_to_move[counter]), Pair(1, ""), Pair(2, "")))
+        1 -> list.add(0, mutableListOf(Pair(0, ""), Pair(1, list_to_move[counter]), Pair(2, "")))
+        2 -> list.add(0, mutableListOf(Pair(0, ""), Pair(1, ""), Pair(2, list_to_move[counter])))
+        else -> println("There are a error with (" + to + ")")
+      }
+      ++counter
+    }
+  }
+
   return list
 }
 
