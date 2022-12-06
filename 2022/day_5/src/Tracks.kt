@@ -125,13 +125,25 @@ fun ReadMovement(AllLines: List<String>, All_tracks: MutableList<MutableList<Pai
   return All_tracks
 }
 
-fun Searcher(definitive: List<MutableList<Pair<Int, String>>>) : List<String> {
-  var list_voc: MutableList<String> = mutableListOf()
+fun Searcher(definitive: List<MutableList<Pair<Int, String>>>) : List<Pair<Int, String>> {
+  var list_voc: MutableList<Pair<Int, String>> = mutableListOf()
   for (i in definitive) {
+    var next: Boolean = false
     for (j in i) {
-      if (j.second != "") {
-        list_voc.add(j.second)
+      for (k in list_voc) {
+        if (k.first == j.first) {
+          next = true
+        }
       }
+
+      if (next) {
+        continue
+      }
+
+      if (j.second != "") {
+        list_voc.add(j)
+      }
+      next = false
     }
   }
   return list_voc
