@@ -7,7 +7,7 @@ fun ReadFile(name: String): List<String> {
 }
 
 // amount == amount of line to read
-fun Structure(all_lines: List<String>, amount: Int): List<MutableList<Pair<Int, String>>> {
+fun Structure(all_lines: List<String>, amount: Int): MutableList<MutableList<Pair<Int, String>>> {
   var all_sets: MutableList<MutableList<Pair<Int, String>>> = mutableListOf()
   var single_set: MutableList<Pair<Int, String>> = mutableListOf()
   var letter: String = ""
@@ -40,7 +40,6 @@ fun Structure(all_lines: List<String>, amount: Int): List<MutableList<Pair<Int, 
     all_sets.add(single_set)
     single_set = mutableListOf()
   }
-  println(all_sets)
   
   return all_sets
 }
@@ -89,19 +88,19 @@ fun Movement(list: MutableList<MutableList<Pair<Int, String>>>, amount: Int, fro
   return list
 }
 
-fun ReadMovement(AllLines: List<String>, All_tracks: List<MutableList<Pair<Int, String>>>, start: Int) : List<MutableList<Pair<Int, String>>> {
+fun ReadMovement(AllLines: List<String>, All_tracks: MutableList<MutableList<Pair<Int, String>>>, start: Int) : List<MutableList<Pair<Int, String>>> {
   var switcher: Int = 0
-  for (i in AllLines[start]..AllLines[AllLines.size - 1]) {
+  for (i in start..AllLines.size - 1) {
     var amount: Int = -100
     var from: Int = -100
     var to: Int = -100
     for (j in AllLines[i]) {
       if (j <= '9' && j >= '0') {
         when (switcher) {
-          0 -> amount = j
-          1 -> from = j
-          2 -> to = j
-          4 -> {
+          0 -> amount = j.toInt() - 48
+          1 -> from = j.toInt() - 48
+          2 -> to = j.toInt() - 48
+          3 -> {
             Movement(All_tracks, amount, from, to)
             switcher = -1
           }
@@ -111,9 +110,13 @@ fun ReadMovement(AllLines: List<String>, All_tracks: List<MutableList<Pair<Int, 
       }
     }
   }
+  return All_tracks
 }
 
 fun main(args: Array<String>) {
   val AllLines: List<String> = ReadFile(args[0])
-  val All_tracks: List<MutableList<Pair<Int, String>>> = Structure(AllLines, args[1].toInt())
+  val All_tracks: MutableList<MutableList<Pair<Int, String>>> = Structure(AllLines, args[1].toInt())
+  val definitive: List<MutableList<Pair<Int, String>>> = ReadMovement(AllLines, All_tracks, args[1].toInt() + 1)
+  println()
+  println(definitive)
 }
