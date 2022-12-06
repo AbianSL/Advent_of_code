@@ -137,6 +137,7 @@ fun Searcher(definitive: List<MutableList<Pair<Int, String>>>) : List<Pair<Int, 
       }
 
       if (next) {
+        next = false
         continue
       }
 
