@@ -20,6 +20,9 @@ fun HowManyTakeFour(line: List<String>): Int {
   for (i in 0..line.size) {
     var amount: Int = 0
     for (j in 0..4) {
+      if (line.size - i < 4) {
+        break
+      }
       characters += line[i + j]
       amount = i + j
     }
