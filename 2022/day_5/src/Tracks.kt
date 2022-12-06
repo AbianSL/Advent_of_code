@@ -79,9 +79,15 @@ fun Movement(list: MutableList<MutableList<Pair<Int, String>>>, amount: Int, fro
       }
       var list_to_change: MutableList<Pair<Int, String>> = mutableListOf()
       when (to) {
-        0 ->  list_to_change = mutableListOf(Pair(0, list_to_move[counter].second), Pair(1, ""), Pair(2, ""))
-        1 -> list_to_change =  mutableListOf(Pair(0, ""), Pair(1, list_to_move[counter].second), Pair(2, ""))
-        2 -> list_to_change =  mutableListOf(Pair(0, ""), Pair(1, ""), Pair(2, list_to_move[counter].second))
+        0 -> list_to_change = mutableListOf(Pair(0, list_to_move[counter].second), Pair(1, ""), Pair(2, ""), Pair(3, ""), Pair(4, ""), Pair(5, ""), Pair(6, ""), Pair(7, ""), Pair(8, ""))
+        1 -> list_to_change = mutableListOf(Pair(0, ""), Pair(1, list_to_move[counter].second), Pair(2, ""), Pair(3, ""), Pair(4, ""), Pair(5, ""), Pair(6, ""), Pair(7, ""), Pair(8, ""))
+        2 -> list_to_change = mutableListOf(Pair(0, ""), Pair(1, ""), Pair(2, list_to_move[counter].second), Pair(3, ""), Pair(4, ""), Pair(5, ""), Pair(6, ""), Pair(7, ""), Pair(8, ""))
+        3 -> list_to_change = mutableListOf(Pair(0, ""), Pair(1, ""), Pair(2, ""), Pair(3, list_to_move[counter].second), Pair(4, ""), Pair(5, ""), Pair(6, ""), Pair(7, ""), Pair(8, ""))
+        4 -> list_to_change = mutableListOf(Pair(0, ""), Pair(1, ""), Pair(2, ""), Pair(3, ""), Pair(4, list_to_move[counter].second), Pair(5, ""), Pair(6, ""), Pair(7, ""), Pair(8, ""))
+        5 -> list_to_change = mutableListOf(Pair(0, ""), Pair(1, ""), Pair(2, ""), Pair(3, ""), Pair(4, ""), Pair(5, list_to_move[counter].second), Pair(6, ""), Pair(7, ""), Pair(8, ""))
+        6 -> list_to_change = mutableListOf(Pair(0, ""), Pair(1, ""), Pair(2, ""), Pair(3, ""), Pair(4, ""), Pair(5, ""), Pair(6, list_to_move[counter].second), Pair(7, ""), Pair(8, ""))
+        7 -> list_to_change = mutableListOf(Pair(0, ""), Pair(1, ""), Pair(2, ""), Pair(3, ""), Pair(4, ""), Pair(5, ""), Pair(6, ""), Pair(7, list_to_move[counter].second), Pair(8, ""))
+        8 -> list_to_change = mutableListOf(Pair(0, ""), Pair(1, ""), Pair(2, ""), Pair(3, ""), Pair(4, ""), Pair(5, ""), Pair(6, ""), Pair(7, ""), Pair(8, list_to_move[counter].second))
         else -> println("There are a error with the direction (" + to + ")")
       }
       list.add(0, list_to_change)
