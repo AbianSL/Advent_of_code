@@ -63,15 +63,15 @@ fun Movement(list: MutableList<MutableList<Pair<Int, String>>>, amount: Int, fro
 
   println(list_to_move)
   println()
-  println(list)
 
   counter = 0
-  for (i in list.size - 1 ..0) {
-    if (list[i][to - 1].second == "") {
-      list[i][to - 1] == list_to_move[counter]
+  for (i in (list.size - 1) downTo 0) {
+    if (list[i][to].second == "") {
+      list[i][to] = list_to_move[counter]
       ++counter
     }
   }
+  println(list)
 
   if (counter < list_to_move.size - 1) {
     for (i in 0..list_to_move.size - 1) {
@@ -107,15 +107,17 @@ fun ReadMovement(AllLines: List<String>, All_tracks: MutableList<MutableList<Pai
           1 -> from = j.toInt() - 48 - 1 // I count since 0
           2 -> {
             to = j.toInt() - 48 - 1 // I count since 0
+  println(amount)
+  println(from)
+  println(to)
+  println()
+            
             Movement(All_tracks, amount, from, to)
             switcher = -1
           }
           else -> println("There are an error with switcher: (" + switcher + ")")
         }
-    println(amount)
-    println(from)
-    println(to)
-    println()
+
         ++switcher
       }
     }
