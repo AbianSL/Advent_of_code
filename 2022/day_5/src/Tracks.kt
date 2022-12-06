@@ -63,6 +63,9 @@ fun Movement(list: MutableList<MutableList<Pair<Int, String>>>, amount: Int, fro
 
   counter = 0
   for (i in (list.size - 1) downTo 0) {
+    if (counter >= list_to_move.size) {
+      break
+    }
     if (list[i][to].second == "") {
       list[i][to] = Pair(list[i][to].first, list_to_move[counter].second)
       ++counter
@@ -85,7 +88,6 @@ fun Movement(list: MutableList<MutableList<Pair<Int, String>>>, amount: Int, fro
       ++counter
     }
   }
-  println(list)
 
   return list
 }
