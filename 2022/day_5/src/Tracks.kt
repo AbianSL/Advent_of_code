@@ -111,12 +111,7 @@ fun ReadMovement(AllLines: List<String>, All_tracks: MutableList<MutableList<Pai
           0 -> amount = j.toInt() - 48
           1 -> from = j.toInt() - 48 - 1 // I count since 0
           2 -> {
-            to = j.toInt() - 48 - 1 // I count since 0
-  println(amount)
-  println(from)
-  println(to)
-  println()
-            
+            to = j.toInt() - 48 - 1 // I count since 0            
             Movement(All_tracks, amount, from, to)
             switcher = -1
           }
@@ -130,10 +125,22 @@ fun ReadMovement(AllLines: List<String>, All_tracks: MutableList<MutableList<Pai
   return All_tracks
 }
 
+fun Searcher(definitive: List<MutableList<Pair<Int, String>>>) : List<String> {
+  var list_voc: MutableList<String> = mutableListOf()
+  for (i in definitive) {
+    for (j in i) {
+      if (j.second != "") {
+        list_voc.add(j.second)
+      }
+    }
+  }
+  return list_voc
+}
+
 fun main(args: Array<String>) {
   val AllLines: List<String> = ReadFile(args[0])
   val All_tracks: MutableList<MutableList<Pair<Int, String>>> = Structure(AllLines, args[1].toInt())
   val definitive: List<MutableList<Pair<Int, String>>> = ReadMovement(AllLines, All_tracks, args[1].toInt() + 2)
   println()
-  println(definitive)
+  println(Searcher(definitive))
 }
