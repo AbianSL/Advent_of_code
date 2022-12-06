@@ -16,20 +16,21 @@ fun AllDifferent(characters: String): Boolean {
 }
 
 fun HowManyTakeFour(line: List<String>): Int {
-  var characters: String = ""
-  for (i in 0..line.size) {
-    var amount: Int = 0
-    for (j in 0..4) {
-      if (line.size - i < 4) {
-        break
+  for (i in line) {
+    for (k in 0..i.length - 1) {
+      var characters: String = ""
+      var amount: Int = 0
+      for (j in 0..4) {
+        if (i.length - k < 4) {
+          break
+        }
+        characters += line[k + j]
+        amount = k + j
       }
-      characters += line[i + j]
-      amount = i + j
+      if (AllDifferent(characters)) {
+        return amount
+      }
     }
-    if (AllDifferent(characters)) {
-      return amount
-    }
-    characters = ""
   }
   return -1000
 }
