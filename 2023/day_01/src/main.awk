@@ -12,7 +12,7 @@ function min_of_array(array) {
   position = array[1];
   
   if (position == 0) {
-    min = 100;
+    position = 100;
   }
 
   for (i = 2; i <= length(array); i++) {
@@ -35,34 +35,31 @@ function max_of_array(array) {
       max = i;
       position = array[i];
     }
-  print("array[i]: " array[i])
-  print("max: " max)
-  print("i: " i)
   }
   return max;
 }
 
-function convert_one(number, str) {
+function convert_once(number, input_str) {
   if (number == 1) {
-    gsub(/one/, "1", str);
+    gsub(/one/, "1", input_str);
   } else if (number == 2) {
-    gsub(/two/, "2", str);
+    gsub(/two/, "2", input_str);
   } else if (number == 3) {
-    gsub(/three/, "3", str);
+    gsub(/three/, "3", input_str);
   } else if (number == 4) {
-    gsub(/four/, "4", str);
+    gsub(/four/, "4", input_str);
   } else if (number == 5) {
-    gsub(/five/, "5", str);
+    gsub(/five/, "5", input_str);
   } else if (number == 6) {
-    gsub(/six/, "6", str);
+    gsub(/six/, "6", input_str);
   } else if (number == 7) {
-    gsub(/seven/, "7", str);
+    gsub(/seven/, "7", input_str);
   } else if (number == 8) {
-    gsub(/eight/, "8", str);
+    gsub(/eight/, "8", input_str);
   } else if (number == 9) {
-    gsub(/nine/, "9", str);
-  }
-  return str;
+    gsub(/nine/, "9", input_str);
+  } 
+  return input_str;
 }
 
 function convert(str) {
@@ -79,10 +76,9 @@ function convert(str) {
   minimun = min_of_array(position_number);
   maximum = max_of_array(position_number);
 
-  str = convert_one(minimun, str);
-  str = convert_one(maximun, str);
+  str = convert_once(minimun, str);
+  str = convert_once(maximum, str);
 
-  print("str: " str)
   return str;
 }
 
