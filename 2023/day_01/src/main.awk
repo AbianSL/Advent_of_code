@@ -8,24 +8,38 @@ function is_numeric(str) {
   return str ~ /[0-9]/;
 }
 
-function min(array) {
-  min = array[1];
+function min_of_array(array) {
+  position = array[1];
+  
+  if (position == 0) {
+    min = 100;
+  }
+
   for (i = 2; i <= length(array); i++) {
-    if (array[i] < min) {
-      min = array[i];
+    if (array[i] == 0) {
+      continue;
+    }
+    if (array[i] < position) {
+      min = i;
+      position = array[i];
     }
   }
-  return (min, i);
+  return min;
 }
 
-function max(array) {
-  max = array[1];
-  for (i = 2; i <= length(array); i++) {
-    if (array[i] > max) {
-      max = array[i];
+function max_of_array(array) {
+  position = array[1];
+
+  for (i = 2; i <= length(array); i++) {{
+    if (array[i] > position) 
+      max = i;
+      position = array[i];
     }
+  print("array[i]: " array[i])
+  print("max: " max)
+  print("i: " i)
   }
-  return (max, i);
+  return max;
 }
 
 function convert_one(number, str) {
@@ -62,12 +76,13 @@ function convert(str) {
   position_number[8] = match(str, /eight/);
   position_number[9] = match(str, /nine/);
 
-  minimun = min(position_number);
-  maximum = max(position_number);
-  
-  str = convert_one(minimun[2], str);
-  str = convert_one(maximum[2], str);
+  minimun = min_of_array(position_number);
+  maximum = max_of_array(position_number);
 
+  str = convert_one(minimun, str);
+  str = convert_one(maximun, str);
+
+  print("str: " str)
   return str;
 }
 
@@ -88,11 +103,10 @@ function convert(str) {
       }
     }
     result += numbers;
-    print($i);
-    print(converted);
-    print(numbers);
-    print("result: " result);
     numbers = "";
+    print("converted: " converted)
+    print("result: " result);
+    print("\n") 
   }
 }
 
