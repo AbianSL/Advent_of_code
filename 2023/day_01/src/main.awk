@@ -26,5 +26,9 @@ function isnumeric(str) {
   }
 }
 
-END { 
+END {
+  for (i = 1; i < length(numbers); i += 2) {
+    sum += substr(numbers, i, 2);
+  }
+  print(sum)
 }
