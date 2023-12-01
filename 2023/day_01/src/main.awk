@@ -10,7 +10,6 @@ function isnumeric(str) {
 {
   for (i = 1; i <= NF; i++) {
     test = $i;
-    print(numbers);
     for (j = 1; j <= length($i); j++) {
       if (isnumeric(substr($i, j, 1))) {
         numbers += substr($i, j, 1);
@@ -18,8 +17,12 @@ function isnumeric(str) {
       } 
     }
 
-    for (j = length($i) - 1; j > 0; j--) {
+    for (j = length($i); j > 0; j--) {
       if (isnumeric(substr($i, j, 1))) {
+        if (i == 1) {
+          print(numbers);
+          print(substr($i, j, 1));
+        }
         numbers += substr($i, j, 1);
         break;
       } 
