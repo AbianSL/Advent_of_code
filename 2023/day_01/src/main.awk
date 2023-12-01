@@ -9,31 +9,33 @@ function is_numeric(str) {
 }
 
 function min_of_array(array) {
-  position = array[1];
-  
-  if (position == 0) {
-    position = 100;
+  position_min = array[1];
+  min = 1; 
+
+  if (position_min == 0) {
+    position_min = 100;
   }
 
   for (i = 2; i <= length(array); i++) {
     if (array[i] == 0) {
       continue;
     }
-    if (array[i] < position) {
+    if (array[i] < position_min) {
       min = i;
-      position = array[i];
+      position_min= array[i];
     }
   }
   return min;
 }
 
 function max_of_array(array) {
-  position = array[1];
+  position_max = array[1];
+  max = 1;
 
-  for (i = 2; i <= length(array); i++) {{
-    if (array[i] > position) 
+  for (i = 2; i <= length(array); i++) {
+    if (array[i] > position_max) { 
       max = i;
-      position = array[i];
+      position_max = array[i];
     }
   }
   return max;
@@ -100,9 +102,6 @@ function convert(str) {
     }
     result += numbers;
     numbers = "";
-    print("converted: " converted)
-    print("result: " result);
-    print("\n") 
   }
 }
 
