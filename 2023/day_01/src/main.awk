@@ -1,107 +1,38 @@
 BEGIN {
   FS = "\n";
-  numbers = "";
   result = 0;
+  
+  numbers[1] = "one";
+  numbers[2] = "two";
+  numbers[3] = "three";
+  numbers[4] = "four";
+  numbers[5] = "five";
+  numbers[6] = "six";
+  numbers[7] = "seven";
+  numbers[8] = "eight";
+  numbers[9] = "nine";
 }
 
-function is_numeric(str) {
-  return str ~ /[0-9]/;
-}
-
-function min_of_array(array) {
-  position_min = array[1];
-  min = 1; 
-
-  if (position_min == 0) {
-    position_min = 100;
-  }
-
-  for (i = 2; i <= length(array); i++) {
-    if (array[i] == 0) {
-      continue;
-    }
-    if (array[i] < position_min) {
-      min = i;
-      position_min= array[i];
-    }
-  }
-  return min;
-}
-
-function max_of_array(array) {
-  position_max = array[1];
-  max = 1;
-
-  for (i = 2; i <= length(array); i++) {
-    if (array[i] > position_max) { 
-      max = i;
-      position_max = array[i];
-    }
-  }
-  return max;
-}
-
-function convert_once(number, input_str) {
-  if (number == 1) {
-    gsub(/one/, "1", input_str);
-  } else if (number == 2) {
-    gsub(/two/, "2", input_str);
-  } else if (number == 3) {
-    gsub(/three/, "3", input_str);
-  } else if (number == 4) {
-    gsub(/four/, "4", input_str);
-  } else if (number == 5) {
-    gsub(/five/, "5", input_str);
-  } else if (number == 6) {
-    gsub(/six/, "6", input_str);
-  } else if (number == 7) {
-    gsub(/seven/, "7", input_str);
-  } else if (number == 8) {
-    gsub(/eight/, "8", input_str);
-  } else if (number == 9) {
-    gsub(/nine/, "9", input_str);
-  } 
-  return input_str;
-}
-
-function convert(str) {
-  position_number[1] = match(str, /one/);
-  position_number[2] = match(str, /two/);
-  position_number[3] = match(str, /three/);
-  position_number[4] = match(str, /four/);
-  position_number[5] = match(str, /five/);
-  position_number[6] = match(str, /six/);
-  position_number[7] = match(str, /seven/);
-  position_number[8] = match(str, /eight/);
-  position_number[9] = match(str, /nine/);
-
-  minimun = min_of_array(position_number);
-  maximum = max_of_array(position_number);
-
-  str = convert_once(minimun, str);
-  str = convert_once(maximum, str);
-
-  return str;
+func is_number(string) {
+  return string ~ /[0-9]+/;
 }
 
 {
-  for (i = 1; i <= NF; i++) {
-    converted = convert($i);
+  converted = "";
+  for (i = 1; i <= $0; i++) {
+    string = substr($0, i);
+    char = substr($0, i, 1);
 
-    for (j = 1; j <= length(converted); j++) {
-      if (is_numeric(substr(converted, j, 1))) {
-        numbers = numbers "" substr(converted, j, 1);
-        break;
-      }
+    if (is_number(char)) {
+      converted = converted "" char;
+      continue;
     }
-    for (j = length(converted); j > 0; j--) {
-      if (is_numeric(substr(converted, j, 1))) {
-        numbers = numbers "" substr(converted, j, 1);
-        break;
+
+    for (j = 1; j <= 9; j++) {
+      if (index(string, numbers[j]) == 1) {
+        converted = converted "" j;
       }
-    }
-    result += numbers;
-    numbers = "";
+    } 
   }
 }
 
