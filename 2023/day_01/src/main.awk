@@ -18,21 +18,27 @@ func is_number(string) {
 }
 
 {
-  converted = "";
-  for (i = 1; i <= $0; i++) {
-    string = substr($0, i);
-    char = substr($0, i, 1);
+  for (i = 1; i <= NF; i++) { 
+    converted = "";
+    
+    for (k = 1; k <= length($i); k++) {
+      string = substr($i, k);
+      char = substr($i, k, 1);
 
-    if (is_number(char)) {
-      converted = converted "" char;
-      continue;
-    }
-
-    for (j = 1; j <= 9; j++) {
-      if (index(string, numbers[j]) == 1) {
-        converted = converted "" j;
+      if (is_number(char)) {
+        converted = converted "" char;
+        continue;
       }
-    } 
+
+      for (j = 1; j <= 9; j++) {
+        if (index(string, numbers[j]) == 1) {
+          converted = converted "" j;
+        }
+      } 
+    }
+    
+    result_string = substr(converted, 1, 1) "" substr(converted, length(converted));
+    result += result_string;
   }
 }
 
