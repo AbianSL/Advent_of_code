@@ -12,26 +12,30 @@ BEGIN {
 
 func get_number(string) {
   match(string, /[0-9]+/);
-  return substr(string, RSTART, RLENGTH);
+  return strtonum(substr(string, RSTART, RLENGTH));
 }
 
 func correct_color(string) {
     split(string, tmp_array, ",");
 
-    for (j = 1; j <= length(tmp_array); j++) {      
+    for (j = 1; j <= length(tmp_array); j++) {
+      
       if (tmp_array[j] ~ /red/ && get_number(tmp_array[j]) > red_number) {
         tmp_number = 0;
         flag_color = 1;
+
         break;
       
       } else if (tmp_array[j] ~ /green/ && get_number(tmp_array[j]) > green_number) {
         tmp_number = 0;
         flag_color = 1;
+
         break;
       
       } else if (tmp_array[j] ~ /blue/ && get_number(tmp_array[j]) > blue_number) {
         tmp_number = 0;
         flag_color = 1;
+        
         break;
       }
     }
@@ -42,13 +46,11 @@ func correct_color(string) {
     if ($i ~ /Game [0-9]+/) {
       result += tmp_number; 
       tmp_number = get_number($i);
+      flag_color = 0;
       continue;
     }
     
     if (flag_color) {
-      if (i == 1) {
-        flag_color = 0;
-      }
       continue
     }
     
