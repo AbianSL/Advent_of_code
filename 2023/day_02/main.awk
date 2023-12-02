@@ -19,17 +19,17 @@ func correct_color(string) {
     split(string, tmp_array, ",");
 
     for (j = 1; j <= length(tmp_array); j++) {      
-      if (tmp_array[j] ~ /Red/ && get_number(tmp_array[j]) > red_number) {
+      if (tmp_array[j] ~ /red/ && get_number(tmp_array[j]) > red_number) {
         tmp_number = 0;
         flag_color = 1;
         break;
       
-      } else if (tmp_array[j] ~ /Green/ && get_number(tmp_array[j]) > green_number) {
+      } else if (tmp_array[j] ~ /green/ && get_number(tmp_array[j]) > green_number) {
         tmp_number = 0;
         flag_color = 1;
         break;
       
-      } else if (tmp_array[j] ~ /Blue/ && get_number(tmp_array[j]) > blue_number) {
+      } else if (tmp_array[j] ~ /blue/ && get_number(tmp_array[j]) > blue_number) {
         tmp_number = 0;
         flag_color = 1;
         break;
