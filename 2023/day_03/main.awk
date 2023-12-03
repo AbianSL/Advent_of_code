@@ -8,6 +8,26 @@ BEGIN {
   result = 0;
 }
 
+func not_has_number_or_dot(string) {
+  if (string == "") {
+    return 0;
+  }
+
+  detected = 0;
+  
+  for (j = 1; j <= length(string); j++) {
+    
+    char = substr(string, j, 1);
+
+    if (char !~ /[0-9\.]/) {
+      detected = 1;
+      break;
+    }
+  }
+
+  return detected;
+}
+
 {
   number = "";
 
@@ -15,67 +35,40 @@ BEGIN {
     flag_found = 0;
     
     print "first_line: " first_line, "middle_line: " middle_line, "last_line: " last_line;
-    for (i = 1; i <= NF; i++) {
+    for (i = 1; i <= length(middle_line); i++) {
       
-      flag_pass = 0;
       char_middle = substr(middle_line, i, 1);
-      char_middle_next = substr(middle_line, i + 1, 1);
-      char_middle_prev = substr(middle_line, i - 1, 1);
-
+      string_middle = substr(middle_line, i - 1, 3);
+      
       if (char_middle !~ /[0-9]/) {
         if (flag_found == 1) {
           result = result + number;
-          number = "";
           flag_found = 0;
-        }
 
+          print "number: " number, "result: " result;
+        }
+        
+        number = "";
         continue;
       }
       
       if (flag_found == 1) {
         number = number "" char_middle;
         continue;
-      }
-
-      if (char_middle_next ~ /[^0-9]/ && char_middle_next ~ /[^\.]/ || char_middle_prev ~ /[^0-9]/ && char_middle_prev ~ /[^\.]/) {
-        flag_found = 1;
-      }
-
-      if (first_line != "" ) {
-        char_first = substr(first_line, i, 1);
-        char_diagonal_left = substr(first_line, i - 1, 1);
-        char_diagonal_right = substr(first_line, i + 1, 1);
-        
-        if (char_first ~ /\./ || char_first ~ /[0-9]/ && char_diagonal_left ~ /\./ || char_diagonal_left ~ /[0-9]/ && char_diagonal_right ~ /\./ || char_diagonal_right ~ /[0-9]/) {
-          flag_pass = 1;
-        }
-
-        if (char_first ~ /[^\.]/ && char_first ~ /[^0-9]/ || char_diagonal_left ~ /[^\.]/ && char_diagonal_left ~ /[^0-9]/ || char_diagonal_right ~ /[^\.]/ && char_diagonal_right ~ /[^0-9]/) {
-          flag_found = 1;
-        }
-      }
+      } 
       
-      if (last_line != "") {
-        char_last = substr(last_line, i, 1);
-        char_diagonal_left = substr(last_line, i - 1, 1);
-        char_diagonal_right = substr(last_line, i + 1, 1);
-        
-        if (char_last ~ /\./ || char_last ~ /[0-9]/ && char_diagonal_left ~ /\./ || char_diagonal_left ~ /[0-9]/ && char_diagonal_right ~ /\./ || char_diagonal_right ~ /[0-9]/) {
-          flag_pass = 1;
-        }
-
-        if (char_last ~ /[^\.]/ && char_last ~ /[^0-9]/ || char_diagonal_left ~ /[^\.]/ && char_diagonal_left ~ /[^0-9]/ || char_diagonal_right ~ /[^\.]/ && char_diagonal_right ~ /[^0-9]/) {
-          flag_found = 1; 
-        }
-      }
-
-      if (flag_pass == 1) {
-        continue;
-      }
+      string_first = substr(first_line, i - 1, 3);
+      string_last = substr(last_line, i - 1, 3);
 
       number = number "" char_middle;
-      
+
+      if (not_has_number_or_dot(string_first) || not_has_number_or_dot(string_last) || not_has_number_or_dot(string_middle)) {
+        flag_found = 1;
+        continue;
+      }
     }
+
+    print "\n";
   }
 
   first_line = middle_line;
