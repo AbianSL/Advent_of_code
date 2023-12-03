@@ -19,8 +19,8 @@ click [here](https://en.wikipedia.org/wiki/AWK), but the definition from wikiped
 
 The Paradigms of this programming language are:
 
-    - Scripting
+- Scripting
     
-    - Preocedural
+- Preocedural
 
-    - data-driven 
+- data-driven 
