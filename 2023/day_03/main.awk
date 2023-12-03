@@ -34,7 +34,7 @@ func not_has_number_or_dot(string) {
   if (middle_line != "") {
     flag_found = 0;
     
-    print "first_line: " first_line, "middle_line: " middle_line, "last_line: " last_line;
+    #print "first_line: " first_line, "middle_line: " middle_line, "last_line: " last_line;
     for (i = 1; i <= length(middle_line); i++) {
       
       char_middle = substr(middle_line, i, 1);
@@ -44,8 +44,8 @@ func not_has_number_or_dot(string) {
         if (flag_found == 1) {
           result = result + number;
           flag_found = 0;
-
-          print "number: " number, "result: " result;
+          
+          #print "number: " number, "result: " result;
         }
         
         number = "";
@@ -61,14 +61,14 @@ func not_has_number_or_dot(string) {
       string_last = substr(last_line, i - 1, 3);
 
       number = number "" char_middle;
-
+      
       if (not_has_number_or_dot(string_first) || not_has_number_or_dot(string_last) || not_has_number_or_dot(string_middle)) {
         flag_found = 1;
         continue;
       }
     }
 
-    print "\n";
+    #print "\n";
   }
 
   first_line = middle_line;
